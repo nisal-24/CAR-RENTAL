@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Northway Rentals - Find a car</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="site-header"><a class="brand" href="/">North<span>way</span> Rentals</a><nav id="nav" aria-label="Main"></nav></header>
+
+<section class="hero">
+  <h1>Pick up here. Drop off there.</h1>
+  <p class="lead">Check live availability by branch, date and vehicle type, then book and pay in a few clicks.</p>
+  <div class="ticket">
+    <form id="searchForm" novalidate>
+      <div class="field"><label for="fVenue">Pick-up branch</label><select id="fVenue"><option value="">Any branch</option></select></div>
+      <div class="field"><label for="fType">Vehicle type</label><select id="fType"><option value="">Any type</option></select></div>
+      <div class="field"><label for="fStart">Pick-up date</label><input type="date" id="fStart"></div>
+      <div class="field"><label for="fEnd">Return date</label><input type="date" id="fEnd"></div>
+      <div class="field"><label for="fQ">Make / model</label><input id="fQ" placeholder="e.g. Toyota" maxlength="60"></div>
+      <div class="field"><label for="fMax">Max price per day</label><input type="number" id="fMax" min="0" step="500" placeholder="No limit"></div>
+      <div class="field"><button class="btn primary" type="submit" style="width:100%">Search cars</button></div>
+    </form>
+  </div>
+</section>
+
+<main>
+  <div class="section-head"><h2 id="resultsTitle">Our fleet</h2><span class="muted" id="resultsNote"></span></div>
+  <div id="formErr" class="form-error" hidden></div>
+  <div class="vehicle-list" id="results" aria-live="polite"></div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Create account - Northway Rentals</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="site-header"><a class="brand" href="/">North<span>way</span> Rentals</a><nav id="nav" aria-label="Main"></nav></header>
+<div class="auth-wrap">
+  <div class="auth-card">
+    <h2>Create your account</h2>
+    <p class="muted">Free to join. Upgrade to a loyalty tier any time for discounts.</p>
+    <div class="form-error" id="err" hidden></div>
+    <form id="regForm" novalidate>
+      <div class="field"><label for="name">Full name</label><input id="name" autocomplete="name" maxlength="100" required></div>
+      <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="phone">Phone (optional)</label><input id="phone" type="tel" autocomplete="tel" maxlength="20"></div>
+      <div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="new-password" maxlength="72" required>
+        <div class="hint">At least 8 characters with a letter and a number.</div></div>
+      <button class="btn primary" style="width:100%" type="submit">Sign up</button>
+    </form>
+    <p>Already registered? <a href="/login">Log in</a></p>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="/js/app.js"></script>
+<script>
+$(function () {
+  loadUser();
+  $('#regForm').on('submit', function (e) {
+    e.preventDefault();
+    $('#err').hide();
+    api('POST', '/api/auth/register', { name: $('#name').val(), email: $('#email').val(), phone: $('#phone').val(), password: $('#password').val() })
+      .done(() => { location.href = '/'; })
+      .fail((x) => $('#err').text(errMsg(x)).show());
+  });
+});
+</script>
+</body>
+</html>
